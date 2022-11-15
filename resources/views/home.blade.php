@@ -1,5 +1,3 @@
 <x-site-layout text="Welcome to LaraRe!">
-    @for ($i = 0; $i <= 30; $i++)
-        <h1>hola</h1>
-    @endfor
+    <h1> TODO: Welcome Card</h1> <br> <br> <br>
 </x-site-layout>

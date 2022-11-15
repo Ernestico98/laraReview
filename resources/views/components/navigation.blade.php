@@ -4,7 +4,9 @@
       <div class="flex h-[100px] items-center justify-between">
 
         <div class="flex-shrink-0">
-            <img src="{{asset('img/logo.png')}}" class="w-20">
+            <a href="{{ route('home') }}" class="border-0">
+                <img src="{{asset('img/logo.png')}}" class="w-20">
+            </a>
         </div>
 
         <div class="hidden md:block">
@@ -16,7 +18,7 @@
                     @else
                         text-black hover:bg-gray-400 hover:text-white
                     @endif
-                            px-3 py-2 rounded-md text-base font-semibold" aria-current="page">{{$item['title']}}</a>
+                            px-3 py-2 rounded-lg text-base font-semibold" aria-current="page">{{$item['title']}}</a>
                 @endforeach
             </div>
         </div>

@@ -6,6 +6,8 @@ use Illuminate\View\Component;
 
 class Footer extends Component
 {
+    public array $menu;
+
     /**
      * Create a new component instance.
      *
@@ -13,7 +15,7 @@ class Footer extends Component
      */
     public function __construct()
     {
-        //
+        $this->menu = config('laraRe.menu');
     }
 
     /**
