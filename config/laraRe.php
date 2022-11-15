@@ -6,12 +6,20 @@ return [
      */
     'menu' => [
         [
-            'title' => 'home',
+            'title' => 'Home',
             'url' => '/',
         ],
         [
-            'title' => 'places',
+            'title' => 'Places',
             'url' => '/places',
+        ],
+        [
+            'title' => 'Tags',
+            'url' => '/tags',
+        ],
+        [
+            'title' => 'Administration',
+            'url' => '/admin',
         ],
     ],
 ];

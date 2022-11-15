@@ -13,12 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// PUBLIC ROUTES =========================================================
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::resource('users', \App\Http\Controllers\UserController::class);
 
 require __DIR__.'/auth.php';
+
+// LOGGED IN ROUTES ======================================================
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+
+// ADMIN ROUTES ===========================================================
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    // admin routes come here
+});

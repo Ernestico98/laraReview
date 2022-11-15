@@ -16,7 +16,7 @@
         <div class="min-h-full">
             <x-navigation/>
 
-            <x-header/>
+            <x-header :text="$text"/>
 
             <main>
                 <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
@@ -33,6 +33,5 @@
         </div>
 
         <x-footer/>
-
     </body>
 </html>
