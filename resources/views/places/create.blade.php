@@ -6,28 +6,52 @@
 
             <div class="flex place-items-center">
                 <label for="name" class="w-24 text-sm text-gray-500 ">Place Name</label>
-                <input type="text" name="name" placeholder="Name of the place" class="w-64 border border-gray-400 rounded-sm p-1">
+                <input type="text" name="name" placeholder="Name of the place" value="{{old('name', "")}}" class="w-64 border border-gray-400 rounded-sm p-1">
             </div>
-            {{-- <div class="text-orange-600 bg-orange-50 rounded-sm p-1">
-                @foreach ($errors->get('name') as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </div> --}}
+            @error('name')
+                <div class="text-orange-600 bg-orange-50 rounded-sm p-1">
+                    @foreach ($errors->get('name') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </div>
+            @enderror
 
             <div class="flex place-items-center mt-6">
                 <label for="city" class="w-24 text-sm text-gray-500 ">City</label>
-                <input type="text" name="city" placeholder="Place's city" class="w-64 border border-gray-400 rounded-sm p-1">
+                <input type="text" name="city" placeholder="Place's city" value="{{old('city', "")}}" class="w-64 border border-gray-400 rounded-sm p-1">
             </div>
+            @error('city')
+                <div class="text-orange-600 bg-orange-50 rounded-sm p-1">
+                    @foreach ($errors->get('city') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </div>
+            @enderror
 
             <div class="flex place-items-center mt-6">
                 <label for="description" class="w-24 text-sm text-gray-500">Description</label>
-                <textarea name="description" placeholder="Write a short description of the place" class="w-[500px] h-20 border border-gray-400 rounded-sm p-1"></textarea>
+                <textarea name="description" placeholder="Write a short description of the place" class="w-[500px] h-20 border border-gray-400 rounded-sm p-1">{{old('description', "")}}</textarea>
             </div>
+            @error('description')
+                <div class="text-orange-600 bg-orange-50 rounded-sm p-1">
+                    @foreach ($errors->get('description') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </div>
+            @enderror
 
             <div class="flex place-items-center mt-6">
                 <label for="tags" class="w-24 text-sm text-gray-500">Tags</label>
-                <textarea name="tags" placeholder="Write tags separated by comma and no extra spaces" class="w-[250px] h-16 border border-gray-400 rounded-sm p-1"></textarea>
+                <textarea name="tags" placeholder="Write tags separated by comma and no extra spaces" class="w-[250px] h-16 border border-gray-400 rounded-sm p-1">{{old('tags', "")}}</textarea>
             </div>
+            @error('tags')
+                <div class="text-orange-600 bg-orange-50 rounded-sm p-1">
+                    @foreach ($errors->get('tags') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </div>
+            @enderror
+
 
             <div class="flex place-items-center mt-6">
                 <label class="w-24 text-sm text-gray-500">TODO: Add upload photo</label>

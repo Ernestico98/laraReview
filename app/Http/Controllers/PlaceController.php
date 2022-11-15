@@ -55,19 +55,15 @@ class PlaceController extends Controller
 
         $tags = explode(',', $request->tags);
 
-        ray()->clearAll();
         foreach ($tags as $key => $tag) {
             $tag_query = Tag::where('name', '=', $tag);
             $tag_object = null;
-            ray('tag query ', $tag_query);
             if ($tag_query->count() == 0) {
                 $tag_object = Tag::create([
                     'name' => $tag,
                 ]);
-                ray('tag object ', $tag_object);
             } else {
                 $tag_object = $tag_query->first();
-                ray('tag object ', $tag_object);
             }
             PlaceTag::create([
                 'place_id' => $place->id,
