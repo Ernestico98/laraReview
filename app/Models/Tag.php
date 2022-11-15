@@ -9,6 +9,8 @@ class Tag extends Model
 {
     use HasFactory;
 
+    public $guarded = [];
+
     public function places()
     {
         return $this->belongsToMany(Place::class)->using(PlaceTag::class);

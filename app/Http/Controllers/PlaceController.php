@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Place;
+use App\Models\PlaceTag;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class PlaceController extends Controller
@@ -14,7 +16,7 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        $places = Place::all()->sortByDesc('createdAt');
+        $places = Place::all()->sortByDesc('created_at');
 
         return view('places.index', compact('places'));
     }
@@ -26,7 +28,7 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        //
+        return view('places.create');
     }
 
     /**
@@ -37,7 +39,43 @@ class PlaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|min:2|max:30',
+            'description' => 'required|max:255',
+            'city' => 'required',
+            'tags' => 'regex:([a-z]+(,[a-z]+)+)',
+        ]);
+
+        $place = Place::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'city' => $request->city,
+            'author_id' => auth()->user()->id,
+        ]);
+
+        $tags = explode(',', $request->tags);
+
+        ray()->clearAll();
+        foreach ($tags as $key => $tag) {
+            $tag_query = Tag::where('name', '=', $tag);
+            $tag_object = null;
+            ray('tag query ', $tag_query);
+            if ($tag_query->count() == 0) {
+                $tag_object = Tag::create([
+                    'name' => $tag,
+                ]);
+                ray('tag object ', $tag_object);
+            } else {
+                $tag_object = $tag_query->first();
+                ray('tag object ', $tag_object);
+            }
+            PlaceTag::create([
+                'place_id' => $place->id,
+                'tag_id' => $tag_object->id,
+            ]);
+        }
+
+        return redirect()->route('places.index');
     }
 
     /**
