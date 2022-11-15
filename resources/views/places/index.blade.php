@@ -15,19 +15,30 @@
                     </div>
                 </div>
 
-                <div class="py-2 max-h-[90px] overflow-auto">
+                <div class="py-2 h-[90px] overflow-auto">
                     <span class="italic"> {{$place['description']}} </span>
                 </div>
 
-                <div>
-                    <span class="font-bold">City: </span> {{$place['city']}}
-                </div>
+                <div class="pt-1 flex flex-row">
+                    <div class="text-sm basis-2/3">
+                        <div>
+                            <span class="font-bold">City: </span> {{$place['city']}}
+                        </div>
 
-                <div class="text-sm pt-1">
-                    <span class="font-bold">Added by </span> {{$place['author']['name']}} <span class="font-bold"> on </span> {{$place['created_at']}}
+                        <div>
+                            <span class="font-bold">Added by </span> {{$place['author']['name']}} <span class="font-bold"> on </span> {{$place['created_at']}}
+                        </div>
+                    </div>
+
+                    <div class="basis-1/3 text-end w-max">
+                        <a href="#" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
+                            Review
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
+
     @endforeach
 
 </x-site-layout>
