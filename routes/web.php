@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 // PUBLIC ROUTES =========================================================
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('places', \App\Http\Controllers\PlaceController::class);
+
 // Route::resource('users', \App\Http\Controllers\UserController::class);
 
 require __DIR__.'/auth.php';

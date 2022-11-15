@@ -18,7 +18,7 @@ class PlaceFactory extends Factory
     {
         return [
             'name' => fake()->realTextBetween(10, 13),
-            'description' => fake()->realTextBetween(20, 30),
+            'description' => fake()->realTextBetween(40, 200),
             'author_id' => fake()->numberBetween(1, \App\Models\User::count()),
             'city' => fake()->city(),
         ];
