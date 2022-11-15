@@ -20,6 +20,7 @@ class PlaceFactory extends Factory
             'name' => fake()->realTextBetween(10, 13),
             'description' => fake()->realTextBetween(20, 30),
             'author_id' => fake()->numberBetween(1, \App\Models\User::count()),
+            'city' => fake()->city(),
         ];
     }
 }
