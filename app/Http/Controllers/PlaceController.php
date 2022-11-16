@@ -16,7 +16,7 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        $places = Place::all()->sortByDesc('created_at');
+        $places = Place::with('author')->get()->sortByDesc('created_at');
 
         return view('places.index', compact('places'));
     }
@@ -82,7 +82,9 @@ class PlaceController extends Controller
      */
     public function show($id)
     {
-        //
+        $place = Place::find($id);
+
+        return view('places.show', compact('place'));
     }
 
     /**
