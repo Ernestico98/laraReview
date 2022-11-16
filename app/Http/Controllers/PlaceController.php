@@ -43,7 +43,7 @@ class PlaceController extends Controller
             'name' => 'required|min:2|max:30',
             'description' => 'required|max:255',
             'city' => 'required',
-            'tags' => 'regex:([a-z]+(,[a-z]+)+)',
+            'tags' => 'regex:"^[a-z]+(,[a-z]+)*$"',
         ]);
 
         $place = Place::create([
