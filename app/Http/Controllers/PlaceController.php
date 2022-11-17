@@ -82,7 +82,7 @@ class PlaceController extends Controller
      */
     public function show($id)
     {
-        $place = Place::find($id);
+        $place = Place::findOrFail($id);
 
         return view('places.show', compact('place'));
     }
@@ -95,7 +95,9 @@ class PlaceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $place = Place::findOrFail($id);
+
+        return view('places.edit', compact('place'));
     }
 
     /**
@@ -107,7 +109,42 @@ class PlaceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $place = Place::findOrFail($id);
+
+        $validated = $request->validate([
+            'name' => 'required|min:2|max:30',
+            'description' => 'required|max:255',
+            'city' => 'required',
+            'tags' => 'regex:"^[a-z]+(,[a-z]+)*$"',
+        ]);
+
+        $place->tags->map(fn ($item) => $item->delete());
+
+        $tags = explode(',', $request->tags);
+
+        foreach ($tags as $key => $tag) {
+            $tag_query = Tag::where('name', '=', $tag);
+            $tag_object = null;
+            if ($tag_query->count() == 0) {
+                $tag_object = Tag::create([
+                    'name' => $tag,
+                ]);
+            } else {
+                $tag_object = $tag_query->first();
+            }
+            PlaceTag::create([
+                'place_id' => $place->id,
+                'tag_id' => $tag_object->id,
+            ]);
+        }
+
+        $place->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'city' => $request->city,
+        ]);
+
+        return redirect()->route('places.show', $id);
     }
 
     /**
@@ -118,6 +155,8 @@ class PlaceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $place = Place::findOrFail($id)->delete();
+
+        return redirect()->back();
     }
 }
