@@ -82,7 +82,7 @@ class PlaceController extends Controller
      */
     public function show($id)
     {
-        $place = Place::findOrFail($id);
+        $place = Place::with('reviews', 'author', 'reviews.author')->findOrFail($id);
 
         return view('places.show', compact('place'));
     }
