@@ -15,17 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 // PUBLIC ROUTES =========================================================
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('places', \App\Http\Controllers\PlaceController::class);
-
-// Route::resource('users', \App\Http\Controllers\UserController::class);
 
 require __DIR__.'/auth.php';
 
 // LOGGED IN ROUTES ======================================================
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::resource('places', \App\Http\Controllers\PlaceController::class);
+    Route::get('tags', [\App\Http\Controllers\TagController::class, 'index'])->name('tags.index');
+    Route::get('tags/{id}', [\App\Http\Controllers\TagController::class, 'show'])->name('tags.show');
 });
 
 // ADMIN ROUTES ===========================================================
