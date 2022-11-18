@@ -23,18 +23,24 @@
             </div>
         </div>
 
-        <div class="w-40 p-2 flex flex-row justify-center space-x-2">
+        <div class="w-80 p-2 flex flex-row justify-center space-x-2">
             @auth
-            <div class="hover:font-bold">
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit">Logout</button>
-                </form>
-            </div>
+                <div class="hover:font-bold basis-1/2 text-end pr-2">
+                    <a href="{{ route('users.show', auth()->user()->id) }}" >
+                        {{auth()->user()->name}}
+                    </a>
+                </div>
+                |
+                <div class="hover:font-bold">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit">Logout</button>
+                    </form>
+                </div>
             @endauth
 
             @guest
-                <div class="hover:font-bold basis-1/2 text-center">
+                <div class="hover:font-bold basis-1/2 text-end pr-2">
                     <a href="{{ route('login') }}" >
                         Login
                     </a>
