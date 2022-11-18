@@ -37,5 +37,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 // ADMIN ROUTES ===========================================================
 Route::middleware(['auth', 'isAdmin'])->group(function () {
-    // admin routes come here
+    // Users
+    Route::resource('users', \App\Http\Controllers\UserController::class)->only('index');
 });
