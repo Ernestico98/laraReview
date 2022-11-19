@@ -77,8 +77,9 @@ class PlaceController extends Controller
     public function show($id)
     {
         $place = Place::with('reviews', 'author', 'reviews.author')->findOrFail($id);
+        $reviews = $place->reviews->sortByDesc('created_at');
 
-        return view('places.show', compact('place'));
+        return view('places.show', compact('place', 'reviews'));
     }
 
     /**

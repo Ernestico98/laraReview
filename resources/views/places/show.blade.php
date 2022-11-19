@@ -4,7 +4,7 @@
         <x-big-place-card  :place="$place" />
 
         <div class="pl-16">
-            @foreach ($place->reviews as $review)
+            @foreach ($reviews as $review)
                <x-review-card :review="$review" />
             @endforeach
         </div>
