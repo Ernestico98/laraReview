@@ -21,6 +21,11 @@ class Review extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function complaints()
+    {
+        return $this->hasMany(Complaint::class);
+    }
+
     protected static function booted()
     {
         static::created(function ($review) {
