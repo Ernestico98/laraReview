@@ -1,6 +1,6 @@
 <div class="bg-gray-50 my-8 rounded-md p-3 shadow-gray-100 shadow-md border border-gray-100 h-52">
     <div class="flex flex-row items-center">
-        <div class="bg-emerald-50">
+        <div>
             <img src="{{asset('img/profile.jpeg')}}" class="rounded-full h-16" >
         </div>
 
