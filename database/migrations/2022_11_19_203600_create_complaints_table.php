@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('complaints', function (Blueprint $table) {
             $table->foreignId('review_id');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

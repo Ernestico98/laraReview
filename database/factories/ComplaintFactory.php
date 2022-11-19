@@ -18,6 +18,7 @@ class ComplaintFactory extends Factory
     {
         return [
             'review_id' => fake()->numberBetween(1, \App\Models\Review::count()),
+            'user_id' => fake()->numberBetween(1, \App\Models\User::count()),
         ];
     }
 }

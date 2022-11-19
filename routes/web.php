@@ -40,7 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/places/{place_id}/review', [\App\Http\Controllers\ReviewController::class, 'store'])->name('reviews.store');
 
     // Complaint
-    Route::post('/report/complaint/{review_id}', [\App\Http\Controllers\ComplaintController::class, 'report'])->name('complaint.report');
+    Route::post('/report/complaint/{review_id}/{user_id}', [\App\Http\Controllers\ComplaintController::class, 'report'])->name('complaint.report');
 });
 
 // ADMIN ROUTES ===========================================================
