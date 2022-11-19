@@ -9,8 +9,12 @@
                 <div class="font-bold">{{$review->author->name}}</div>
                 <div class="text-end"> {{$review->created_at}} </div>
             </div>
-            <div>
-                {{$review->score}} / 5
+            <div class="flex flex-row">
+                <x-star-score :score="$review['score']" />
+                <div class="ml-2">
+                    <span class="font-bold text-sm"> {{$review['score']}} </span> out of
+                    <span class="font-bold text-sm"> 5 </span>
+                </div>
             </div>
         </div>
     </div>
