@@ -14,18 +14,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 // PUBLIC ROUTES =========================================================
+
+// Welcome
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Tags
+Route::resource('places', \App\Http\Controllers\PlaceController::class)->only('index', 'show');
+
+// Tags
+Route::get('tags', [\App\Http\Controllers\TagController::class, 'index'])->name('tags.index');
+Route::get('tags/{id}', [\App\Http\Controllers\TagController::class, 'show'])->name('tags.show');
 
 require __DIR__.'/auth.php';
 
 // LOGGED IN ROUTES ======================================================
 Route::middleware(['auth', 'verified'])->group(function () {
     // Place
-    Route::resource('places', \App\Http\Controllers\PlaceController::class);
-
-    // Tags
-    Route::get('tags', [\App\Http\Controllers\TagController::class, 'index'])->name('tags.index');
-    Route::get('tags/{id}', [\App\Http\Controllers\TagController::class, 'show'])->name('tags.show');
+    Route::resource('places', \App\Http\Controllers\PlaceController::class)->except('index', 'show');
 
     // Users
     Route::resource('users', \App\Http\Controllers\UserController::class)->only('show', 'edit', 'update');
