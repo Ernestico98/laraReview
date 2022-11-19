@@ -91,6 +91,11 @@ class PlaceController extends Controller
     public function edit($id)
     {
         $place = Place::findOrFail($id);
+        $auth_user = auth()->user();
+
+        if (! $auth_user->isAdmin && $place->author_id != $auth_user->id) {
+            abort(403);
+        }
 
         return view('places.edit', compact('place'));
     }
