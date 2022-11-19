@@ -43,7 +43,7 @@ class PlaceController extends Controller
             'name' => 'required|min:2|max:30',
             'description' => 'required|max:255',
             'city' => 'required',
-            'tags' => 'regex:"^[a-z]+(,[a-z]+)*$"',
+            'tags' => 'required|regex:"^[a-zA-Z]+(,[a-zA-Z]+)*$"',
         ]);
 
         $place = Place::create([
@@ -53,18 +53,12 @@ class PlaceController extends Controller
             'author_id' => auth()->user()->id,
         ]);
 
-        $tags = explode(',', $request->tags);
+        $tags = collect(explode(',', $request->tags))->map(fn ($tag) => ucfirst(trim($tag)));
 
         foreach ($tags as $key => $tag) {
-            $tag_query = Tag::where('name', '=', $tag);
-            $tag_object = null;
-            if ($tag_query->count() == 0) {
-                $tag_object = Tag::create([
-                    'name' => $tag,
-                ]);
-            } else {
-                $tag_object = $tag_query->first();
-            }
+            $tag_object = Tag::firstOrCreate([
+                'name' => $tag,
+            ]);
             PlaceTag::create([
                 'place_id' => $place->id,
                 'tag_id' => $tag_object->id,
@@ -115,23 +109,17 @@ class PlaceController extends Controller
             'name' => 'required|min:2|max:30',
             'description' => 'required|max:255',
             'city' => 'required',
-            'tags' => 'regex:"^[a-z]+(,[a-z]+)*$"',
+            'tags' => 'required|regex:"^[a-zA-Z]+(,[a-zA-Z]+)*$"',
         ]);
 
         $place->tags->map(fn ($item) => $item->delete());
 
-        $tags = explode(',', $request->tags);
+        $tags = collect(explode(',', $request->tags))->map(fn ($tag) => ucfirst(trim($tag)));
 
         foreach ($tags as $key => $tag) {
-            $tag_query = Tag::where('name', '=', $tag);
-            $tag_object = null;
-            if ($tag_query->count() == 0) {
-                $tag_object = Tag::create([
-                    'name' => $tag,
-                ]);
-            } else {
-                $tag_object = $tag_query->first();
-            }
+            $tag_object = Tag::firstOrCreate([
+                'name' => $tag,
+            ]);
             PlaceTag::create([
                 'place_id' => $place->id,
                 'tag_id' => $tag_object->id,
