@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('places', function (Blueprint $table) {
-            $table->integer('score')->default(0);
+            $table->float('score')->default(0);
         });
     }
 

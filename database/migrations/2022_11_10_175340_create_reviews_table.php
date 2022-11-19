@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('author_id');
             $table->foreignId('place_id');
-            $table->integer('score');
+            $table->float('score')->default(0);
             $table->text('review');
             $table->timestamps();
         });
