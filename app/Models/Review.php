@@ -26,11 +26,11 @@ class Review extends Model
         static::created(function ($review) {
             $place = Place::findOrFail($review->place_id);
 
-            $count = $place->reviews->count();
-            $new_score = round((($place->score * ($count - 1) + $review->score) / $count), 1);
+            $new_score = round((($place->score * $place->review_count + $review->score) / ($place->review_count + 1)), 1);
 
             $place->update([
                 'score' => $new_score,
+                'review_count' => $place->review_count + 1,
             ]);
         });
     }
