@@ -38,6 +38,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Reviews
     Route::get('/places/{place_id}/review', [\App\Http\Controllers\ReviewController::class, 'create'])->name('reviews.create');
     Route::post('/places/{place_id}/review', [\App\Http\Controllers\ReviewController::class, 'store'])->name('reviews.store');
+
+    // Complaint
+    Route::post('/report/complaint/{review_id}', [\App\Http\Controllers\ComplaintController::class, 'report'])->name('complaint.report');
 });
 
 // ADMIN ROUTES ===========================================================
