@@ -1,4 +1,4 @@
-<div class="mb-12 mt-10 bg-gray-50 rounded-lg flex flex-row shadow-lg shadow-gray-200 h-max">
+<div class="mb-12 mt-6 bg-gray-50 rounded-lg flex flex-row shadow-lg shadow-gray-200 h-max">
     <div class="basis-[32%] rounded-lg overflow-hidden bg-red-300">
         <img class="hover:scale-110" src="https://www.idsplus.net/wp-content/uploads/default-placeholder.png">
     </div>
@@ -44,7 +44,7 @@
                 </div>
 
                 <div>
-                    <span class="font-bold">Added by </span> {{$place['author']['name']}} <span class="font-bold"> on </span> {{$place['created_at']}}
+                    <span class="font-bold">Added by </span> {{$place['author']['name']}} <span class="font-bold"> on </span> {{$place['created_at']->diffForHumans()}}
                 </div>
             </div>
         </div>

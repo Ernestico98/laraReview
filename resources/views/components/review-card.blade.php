@@ -7,7 +7,7 @@
         <div class="ml-5 w-[940px]">
             <div class="grid grid-cols-2 gap-4">
                 <div class="font-bold">{{$review->author->name}}</div>
-                <div class="text-end"> {{$review->created_at}} </div>
+                <div class="text-end"> {{$review->created_at->diffForHumans()}} </div>
             </div>
             <div class="flex flex-row">
                 <x-star-score :score="$review['score']" />

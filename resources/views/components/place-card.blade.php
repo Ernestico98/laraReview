@@ -44,7 +44,7 @@
                 </div>
 
                 <div>
-                    <span class="font-bold">Added by </span> {{$place['author']['name']}} <span class="font-bold"> on </span> {{$place['created_at']}}
+                    <span class="font-bold">Added by </span> {{$place['author']['name']}} <span class="font-bold"> on </span> {{$place['created_at']->diffForHumans()}}
                 </div>
             </div>
 

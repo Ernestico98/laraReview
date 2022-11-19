@@ -33,10 +33,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Reviews
     Route::get('/places/{place_id}/review', [\App\Http\Controllers\ReviewController::class, 'create'])->name('reviews.create');
     Route::post('/places/{place_id}/review', [\App\Http\Controllers\ReviewController::class, 'store'])->name('reviews.store');
-
-    // Route::get('users/{id}', [\App\Http\Controllers\UserController::class, 'show'])->name('users.show');
-    // Route::get('users/{id}/edit', [\App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
-    // Route::put('users/{id}', [\App\Http\Controllers\UserController::class, 'update'])->name('users.update');
 });
 
 // ADMIN ROUTES ===========================================================
