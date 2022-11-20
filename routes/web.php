@@ -50,4 +50,5 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
     // Complaints
     Route::get('/complaints', [\App\Http\Controllers\ComplaintController::class, 'index'])->name('complaints.index');
+    Route::post('/complaints/hide/{review_id}', [\App\Http\Controllers\ComplaintController::class, 'hide_review'])->name('complaints.hide');
 });
