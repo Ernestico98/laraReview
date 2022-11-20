@@ -25,4 +25,12 @@ class Place extends Model
     {
         return $this->belongsToMany(Tag::class)->using(PlaceTag::class);
     }
+
+    protected static function booted()
+    {
+        static::deleting(function ($place) {
+            $place->reviews->delete();
+            $place->tags()->sync([]);
+        });
+    }
 }

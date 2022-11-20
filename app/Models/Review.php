@@ -38,5 +38,9 @@ class Review extends Model
                 'review_count' => $place->review_count + 1,
             ]);
         });
+
+        static::deleting(function ($review) {
+            $review->complaints->delete();
+        });
     }
 }

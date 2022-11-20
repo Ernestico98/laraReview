@@ -56,4 +56,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Complaint::class);
     }
+
+    protected static function booted()
+    {
+        static::deleting(function ($user) {
+            $user->reviews->delete();
+            $user->complaints->delete();
+            $user->places->delete();
+        });
+    }
 }
