@@ -1,6 +1,6 @@
 <x-site-layout text="Users">
     @foreach ($users as $user)
-        <div class="mx-[20%] flex flex-row my-6 rounded-xl bg-gray-200 p-2 shadow-md place-items-end">
+        <div class="mx-[20%] flex flex-row my-6 rounded-xl bg-gray-100 p-2 shadow-md place-items-end">
             <div class="basis-[68%] flex flex-row place-items-center">
                 <div class="basis-[30%]">
                     <img src="{{asset('img/profile.jpeg')}}" class="rounded-full h-28">

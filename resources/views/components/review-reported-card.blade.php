@@ -24,10 +24,14 @@
     </div>
 
     <div class="flex flex-row ml-[84px] justify-between">
-        <div class="">
+        <div>
             <span class="font-bold"> On place: </span>
             <a class="underline" href="{{route('places.show', $review->place_id)}}">{{$review->place->name}}</a>
         </div>
+
+        <div>
+            <span class="font-bold"> Reported by {{$review->complaints_count}} user(s)</span>
+         </div>
 
         <div class="text-end">
             <form onclick="alert('Review has been marked as hidden')" method="post" action="{{route('complaints.hide', ['review_id' => $review->id])}}">
