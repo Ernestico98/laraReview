@@ -16,6 +16,13 @@
 
             <x-form-text-input label="Password Confirmation" name="password_confirmation" placeholder="password" value=""/>
 
+            @if (auth()->user()->isAdmin)
+                <div class="mt-4">
+                    <input type="checkbox" name="isAdmin" @if($user->isAdmin) checked @endif/>
+                    <label for="isAdmin"> Admin Privileges </label>
+                </div>
+            @endif
+
         </x-form>
     </div>
 

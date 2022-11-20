@@ -54,6 +54,7 @@ class UserController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'isAdmin' => ($request->isAdmin === null) ? false : true,
             ]);
         } else {
             $request->validate([
@@ -63,6 +64,7 @@ class UserController extends Controller
             $user->update([
                 'name' => $request->name,
                 'email' => $request->email,
+                'isAdmin' => ($request->isAdmin === null) ? false : true,
             ]);
         }
 
