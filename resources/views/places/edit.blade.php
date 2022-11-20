@@ -1,6 +1,6 @@
 <x-site-layout text="Edit {{$place->name}}">
     <div class="mx-8 my-6">
-        <x-form method="post" route="{{route('places.update', $place->id)}}" submit="Edit">
+        <x-form method="post" route="{{route('places.update', $place->id)}}" submit="Save">
             @method('put', 'delete')
             <x-form-text-input name="name" label="Place Name" placeholder="Name of the place" value="{{$place->name}}"/>
 

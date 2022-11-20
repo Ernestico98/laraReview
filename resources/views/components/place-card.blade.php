@@ -3,7 +3,7 @@
         <img class="hover:scale-110" src="https://www.idsplus.net/wp-content/uploads/default-placeholder.png">
     </div>
 
-    <div class="basis-[67%] rounded-lg my-6 mx-8 bg-white px-6 pt-6 pb-4 shadow-md overflow-hidden">
+    <div class="basis-[67%] rounded-lg my-3 mx-8 bg-white px-6 pt-5 pb-4 shadow-md overflow-hidden">
         <div class="flex flex-row">
             <div class="basis-[50%]">
                 <span class="font-bold">Place Name: </span> {{$place['name']}}
@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <div class="py-2 overflow-auto">
+        <div class="py-2 overflow-auto h-[104px]">
             <span class="italic"> {{$place['description']}} </span>
         </div>
 
@@ -59,7 +59,13 @@
             </div>
         </div>
 
+        <div style="position: relative; top: 22px;" class="text-end">
 
+            @if (auth()->user()->isAdmin || auth()->user()->id == $place->author_id)
+                <a href="{{route('places.edit', $place->id)}}" class="inline-flex items-center px-3 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
+                    Edit
+                </a>
+            @endif
+        </div>
     </div>
-
 </div>
