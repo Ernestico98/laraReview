@@ -25,7 +25,7 @@
 
     @auth
         <div class="text-end">
-            <form onclick="alert('Review has been reported to an administrator')" method="post" action="{{route('complaint.report', ['review_id' => $review->id, 'user_id' => auth()->user()->id])    }}">
+            <form onclick="alert('Review has been reported to an administrator')" method="post" action="{{route('complaints.report', ['review_id' => $review->id, 'user_id' => auth()->user()->id])    }}">
                 @csrf
                 <button type="submit" class="tetx-sm inline-flex items-center px-3 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 disabled:opacity-25 transition ease-in-out duration-150">
                     Report Spam

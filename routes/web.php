@@ -40,11 +40,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/places/{place_id}/review', [\App\Http\Controllers\ReviewController::class, 'store'])->name('reviews.store');
 
     // Complaint
-    Route::post('/report/{review_id}/{user_id}', [\App\Http\Controllers\ComplaintController::class, 'report'])->name('complaint.report');
+    Route::post('/report/{review_id}/{user_id}', [\App\Http\Controllers\ComplaintController::class, 'report'])->name('complaints.report');
 });
 
 // ADMIN ROUTES ===========================================================
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     // Users
     Route::resource('users', \App\Http\Controllers\UserController::class)->only('index');
+
+    // Complaints
+    Route::get('/complaints', [\App\Http\Controllers\ComplaintController::class, 'index'])->name('complaints.index');
 });
