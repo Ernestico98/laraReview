@@ -63,7 +63,7 @@ A simple website that allows you to create reviews from places or check other pe
 ## Notes
 Default admin user:
 ```
-user: admin
+user: admin@example.com
 password: password
 ```
 
