@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('complaints', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('review_id');
-            $table->foreignId('user_id');
-            $table->timestamps();
+        Schema::table('reviews', function (Blueprint $table) {
+            $table->integer('complaints_count')->default(0);
         });
     }
 
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('complaints');
+        Schema::table('reviews', function (Blueprint $table) {
+            //
+        });
     }
 };

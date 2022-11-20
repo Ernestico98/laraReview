@@ -20,4 +20,14 @@ class Complaint extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected static function booted()
+    {
+        static::created(function ($complaint) {
+            $review = $complaint->review;
+            $review->update([
+                'complaints_count' => $review->complaints_count + 1,
+            ]);
+        });
+    }
 }
