@@ -12,13 +12,26 @@
         <div class="hidden md:block">
             <div class="flex items-baseline space-x-4">
                 @foreach ($menu as $key => $item)
-                <a href="{{$item['url']}}" class="
-                    @if ($item['active'])
-                        bg-gray-600 text-white
-                    @else
-                        text-black hover:bg-gray-400 hover:text-white
-                    @endif
-                            px-3 py-2 rounded-lg text-base font-semibold" aria-current="page">{{$item['title']}}</a>
+                    @guest
+                        @if($item['title'] == "Administration")
+                            @continue
+                        @endif
+                    @endguest
+
+                    @auth
+                        @if($item['title'] == "Administration" && !auth()->user()->isAdmin)
+                            @continue
+                        @endif
+                    @endauth
+
+                    <a href="{{$item['url']}}" class="
+                        @if ($item['active'])
+                            bg-gray-600 text-white
+                        @else
+                            text-black hover:bg-gray-400 hover:text-white
+                        @endif
+                                px-3 py-2 rounded-lg text-base font-semibold" aria-current="page">{{$item['title']}}
+                    </a>
                 @endforeach
             </div>
         </div>
