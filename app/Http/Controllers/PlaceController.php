@@ -16,7 +16,7 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        $places = Place::with('author', 'tags')->get()->sortByDesc('created_at');
+        $places = Place::with('author', 'tags')->orderBy('created_at', 'desc')->paginate(5);
 
         return view('places.index', compact('places'));
     }
@@ -77,7 +77,7 @@ class PlaceController extends Controller
     public function show($id)
     {
         $place = Place::with('reviews', 'author', 'reviews.author', 'tags')->findOrFail($id);
-        $reviews = $place->reviews->sortByDesc('created_at')->where('hidden', '=', false);
+        $reviews = $place->reviews()->orderBy('created_at', 'desc')->where('hidden', '=', false)->paginate(10);
 
         return view('places.show', compact('place', 'reviews'));
     }

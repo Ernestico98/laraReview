@@ -8,10 +8,19 @@
 
         <x-big-place-card  :place="$place" />
 
+        <div class="ml-16 mb-4">
+            {{ $reviews->links() }}
+        </div>
+
         <div class="pl-16">
             @foreach ($reviews as $review)
                <x-review-card :review="$review" />
             @endforeach
         </div>
+
+        <div class="ml-16 mt-4">
+            {{ $reviews->links() }}
+        </div>
+
     </div>
 </x-site-layout>
