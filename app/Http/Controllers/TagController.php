@@ -8,14 +8,14 @@ class TagController extends Controller
 {
     public function index()
     {
-        $tags = Tag::all()->sortBy('name');
+        $tags = Tag::with('places')->orderBy('name')->get();
 
         return view('tags.index', compact('tags'));
     }
 
     public function show($id)
     {
-        $tag = Tag::with('places')->findOrFail($id);
+        $tag = Tag::with('places', 'places.tags', 'places.author')->findOrFail($id);
 
         return view('tags.show', compact('tag'));
     }

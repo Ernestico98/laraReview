@@ -10,7 +10,8 @@ class ComplaintController extends Controller
 {
     public function index()
     {
-        $reviews = Review::where('complaints_count', '>', 0)
+        $reviews = Review::with('author', 'complaints', 'place')
+            ->where('complaints_count', '>', 0)
             ->orderBy('complaints_count', 'desc')
             ->paginate(10);
 

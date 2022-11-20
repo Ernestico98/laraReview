@@ -16,7 +16,7 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        $places = Place::with('author')->get()->sortByDesc('created_at');
+        $places = Place::with('author', 'tags')->get()->sortByDesc('created_at');
 
         return view('places.index', compact('places'));
     }
@@ -76,7 +76,7 @@ class PlaceController extends Controller
      */
     public function show($id)
     {
-        $place = Place::with('reviews', 'author', 'reviews.author')->findOrFail($id);
+        $place = Place::with('reviews', 'author', 'reviews.author', 'tags')->findOrFail($id);
         $reviews = $place->reviews->sortByDesc('created_at')->where('hidden', '=', false);
 
         return view('places.show', compact('place', 'reviews'));
@@ -96,6 +96,8 @@ class PlaceController extends Controller
         if (! $auth_user->isAdmin && $place->author_id != $auth_user->id) {
             abort(403);
         }
+
+        $place->load('tags');
 
         return view('places.edit', compact('place'));
     }
