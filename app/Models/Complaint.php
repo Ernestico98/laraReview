@@ -29,5 +29,12 @@ class Complaint extends Model
                 'complaints_count' => $review->complaints_count + 1,
             ]);
         });
+
+        static::deleting(function ($complaint) {
+            $review = $complaint->review;
+            $review->update([
+                'complaints_count' => $review->complaints_count - 1,
+            ]);
+        });
     }
 }
