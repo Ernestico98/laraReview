@@ -1,4 +1,8 @@
 <x-site-layout text="Users">
+
+    <div class="mx-[20%] mb-4">
+        {{ $users->links() }}
+    </div>
     @foreach ($users as $user)
         <div class="mx-[20%] flex flex-row my-6 rounded-xl bg-gray-100 p-2 shadow-md place-items-end">
             <div class="basis-[68%] flex flex-row place-items-center">
@@ -19,4 +23,8 @@
             </div>
         </div>
     @endforeach
+
+    <div class="mx-[20%] mt-4">
+        {{ $users->links() }}
+    </div>
 </x-site-layout>
