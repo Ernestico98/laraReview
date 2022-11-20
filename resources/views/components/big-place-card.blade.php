@@ -1,9 +1,9 @@
 <div class="mb-12 mt-6 bg-gray-50 rounded-lg flex flex-row shadow-lg shadow-gray-200 h-max">
-    <div class="basis-[32%] rounded-lg overflow-hidden bg-red-300">
+    <div class="basis-[33%] rounded-lg overflow-hidden bg-red-300">
         <img class="hover:scale-110" src="https://www.idsplus.net/wp-content/uploads/default-placeholder.png">
     </div>
 
-    <div class="basis-[67%] rounded-lg my-6 mx-8 bg-white px-6 pt-6 pb-4 shadow-md overflow-hidden">
+    <div class="basis-[66%] rounded-lg my-5 mx-8 bg-white px-6 pt-5 pb-4 shadow-md overflow-hidden">
         <div class="flex flex-row">
             <div class="basis-[50%]">
                 <span class="font-bold">Place Name: </span> {{$place['name']}}
