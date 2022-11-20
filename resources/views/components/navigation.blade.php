@@ -43,7 +43,7 @@
                                     <a href="{{route('users.index')}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Users</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Complaints</a>
+                                    <a href="{{route('complaints.index')}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Complaints</a>
                                 </li>
                             </ul>
                         </div>
