@@ -12,17 +12,9 @@
         <div class="hidden md:block">
             <div class="flex items-baseline space-x-4">
                 @foreach ($menu as $key => $item)
-                    @guest
-                        @if($item['title'] == "Administration")
-                            @continue
-                        @endif
-                    @endguest
-
-                    @auth
-                        @if($item['title'] == "Administration" && !auth()->user()->isAdmin)
-                            @continue
-                        @endif
-                    @endauth
+                    @if($item['title'] == "Administration")
+                        @continue
+                    @endif
 
                     <a href="{{$item['url']}}" class="
                         @if ($item['active'])
@@ -33,7 +25,34 @@
                                 px-3 py-2 rounded-lg text-base font-semibold" aria-current="page">{{$item['title']}}
                     </a>
                 @endforeach
+
+                @auth
+                    @if(auth()->user()->isAdmin)
+                        <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="
+                            @if ($menu[3]['active'])
+                                bg-gray-600 text-white
+                            @else
+                                text-black hover:bg-gray-400 hover:text-white
+                            @endif
+                                    px-3 py-2 rounded-lg text-base font-semibold" aria-current="page">{{$menu[3]['title']}}
+                        </button>
+
+                        <div id="dropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
+                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
+                                <li>
+                                    <a href="{{route('users.index')}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Users</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Complaints</a>
+                                </li>
+                            </ul>
+                        </div>
+                        @endif
+                @endauth
             </div>
+
+
+
         </div>
 
         <div class="w-80 p-2 flex flex-row justify-center space-x-2">

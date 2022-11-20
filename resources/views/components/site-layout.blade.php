@@ -10,6 +10,8 @@
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
         <script src="https://cdn.tailwindcss.com"></script>
+
+        <script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
     </head>
 
     <body class="antialiased">
