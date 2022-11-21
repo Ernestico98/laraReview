@@ -4,9 +4,10 @@
             @method('put')
 
             <div class="mb-8 rounded-lg w-48 h-48">
-                <img src="{{asset('img/profile.jpeg')}}" class="rounded-lg">
-                TODO: Change photo
+                <img src="@if($user->media()->exists()) {{$user->media->first()?->getUrl('avatar')}} @else {{asset('img/profile.jpeg')}} @endif" class="rounded-lg">
             </div>
+
+            <x-form-file name="image" label="User avatar" placeholder="" value=""/>
 
             <x-form-text-input label="Name" name="name" placeholder="user's name" value="{{$user->name}}" />
 

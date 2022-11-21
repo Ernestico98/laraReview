@@ -1,5 +1,5 @@
 <div>
-    <form method="{{$method}}" action="{{$route}}">
+    <form method="{{$method}}" action="{{$route}}" enctype="multipart/form-data">
         @csrf
 
         {{$slot}}

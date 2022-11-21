@@ -1,7 +1,7 @@
 <x-site-layout text="{{$user->name}}'s profile">
     <div class="mx-[25%] my-4 text-lg">
         <div class="mb-4 rounded-lg w-48 h-48">
-            <img src="{{asset('img/profile.jpeg')}}" class="rounded-lg">
+            <img src="@if($user->media()->exists()) {{$user->media->first()?->getUrl('avatar')}} @else {{asset('img/profile.jpeg')}} @endif" class="rounded-lg">
         </div>
         <div>
             <span class="font-semibold mr-4"> Name: </span> {{$user->name}}

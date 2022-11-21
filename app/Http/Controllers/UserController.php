@@ -49,6 +49,7 @@ class UserController extends Controller
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', ($user->email != $request->email) ? 'unique:'.User::class : ''],
                 'password' => ['required', 'confirmed', Rules\Password::defaults()],
+                'image' => ['nullable', 'file', 'image'],
             ]);
             $user->update([
                 'name' => $request->name,
@@ -60,12 +61,18 @@ class UserController extends Controller
             $request->validate([
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', ($user->email != $request->email) ? 'unique:'.User::class : ''],
+                'image' => ['nullable', 'file', 'image'],
             ]);
             $user->update([
                 'name' => $request->name,
                 'email' => $request->email,
                 'isAdmin' => ($request->isAdmin === null) ? false : true,
             ]);
+        }
+
+        if ($request->has('image')) {
+            $user->media()->first()?->delete();
+            $user->addMediaFromRequest('image')->toMediaCollection();
         }
 
         return redirect()->route('users.show', $id);
