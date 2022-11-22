@@ -54,6 +54,11 @@ A simple website that allows you to create reviews from places or check other pe
     ./vendor/bin/sail artisan migrate:fresh --seed
     ```
 
+* Link storage directory to public
+    ```
+    ./vendor/bin/sail storage:link
+    ```
+
 * Compile resources and start server
     ```bash
     npm install
