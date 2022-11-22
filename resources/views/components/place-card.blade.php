@@ -66,6 +66,17 @@
                     Edit
                 </a>
             @endif
+
+            @if(auth()->user()->isAdmin)
+                <form method="post" action="{{route('places.destroy', $place->id)}}" class="inline">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="inline-flex items-center px-3 py-1 bg-red-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-400 active:bg-red-600 focus:outline-none focus:border-red-600 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
+                        Delete
+                    </button>
+                </form>
+            @endif
+
         </div>
         @endauth
     </div>
