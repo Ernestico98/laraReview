@@ -43,7 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // ADMIN ROUTES =========================================================================================
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     // Users
-    Route::resource('users', \App\Http\Controllers\UserController::class)->only('index');
+    Route::resource('users', \App\Http\Controllers\UserController::class)->only('index', 'destroy');
 
     // Complaints
     Route::get('/complaints', [\App\Http\Controllers\ComplaintController::class, 'index'])->name('complaints.index');
