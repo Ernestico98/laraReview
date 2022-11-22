@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// PUBLIC ROUTES =========================================================
+// PUBLIC ROUTES ========================================================================================
 
 // Welcome
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Places
-// Route::resource('places', \App\Http\Controllers\PlaceController::class)->only('index', 'show');
+Route::resource('places', \App\Http\Controllers\PlaceController::class)->only('index', 'show');
 
 // Tags
 Route::get('tags', [\App\Http\Controllers\TagController::class, 'index'])->name('tags.index');
@@ -27,10 +27,10 @@ Route::get('tags/{id}', [\App\Http\Controllers\TagController::class, 'show'])->n
 
 require __DIR__.'/auth.php';
 
-// LOGGED IN ROUTES ======================================================
+// LOGGED IN ROUTES =====================================================================================
 Route::middleware(['auth', 'verified'])->group(function () {
     // Places
-    Route::resource('places', \App\Http\Controllers\PlaceController::class);
+    Route::resource('places', \App\Http\Controllers\PlaceController::class)->except('index', 'show');
 
     // Users
     Route::resource('users', \App\Http\Controllers\UserController::class)->only('show', 'edit', 'update');
@@ -43,7 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/report/{review_id}/{user_id}', [\App\Http\Controllers\ComplaintController::class, 'report'])->name('complaints.report');
 });
 
-// ADMIN ROUTES ===========================================================
+// ADMIN ROUTES =========================================================================================
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     // Users
     Route::resource('users', \App\Http\Controllers\UserController::class)->only('index');
