@@ -10,9 +10,8 @@
 
             <x-form-textarea-input name="tags" placeholder="Write tags separated by comma and no extra spaces" label="Tags" width="250" height="16" value=""/>
 
-            <div class="flex place-items-center mt-6">
-                <label class="w-24 text-sm text-gray-500">TODO: Add upload photo</label>
-            </div>
+            <div class="mt-4"></div>
+            <x-form-file name="image" label="Place picture" placeholder="" value=""/>
         </x-form>
     </div>
 

@@ -44,6 +44,7 @@ class PlaceController extends Controller
             'description' => 'required|max:255',
             'city' => 'required',
             'tags' => 'required|regex:"^[a-zA-Z]+(,[a-zA-Z]+)*$"',
+            'image' => ['nullable', 'file', 'image'],
         ]);
 
         $place = Place::create([
@@ -52,6 +53,11 @@ class PlaceController extends Controller
             'city' => $request->city,
             'author_id' => auth()->user()->id,
         ]);
+
+        if ($request->has('image')) {
+            $place->media()->first()?->delete();
+            $place->addMediaFromRequest('image')->toMediaCollection();
+        }
 
         $tags = collect(explode(',', $request->tags))->map(fn ($tag) => ucfirst(trim($tag)));
 
@@ -118,6 +124,7 @@ class PlaceController extends Controller
             'description' => 'required|max:255',
             'city' => 'required',
             'tags' => 'required|regex:"^[a-zA-Z]+(,[a-zA-Z]+)*$"',
+            'image' => ['nullable', 'file', 'image'],
         ]);
 
         $place->tags->map(fn ($item) => $item->delete());
@@ -139,6 +146,11 @@ class PlaceController extends Controller
             'description' => $request->description,
             'city' => $request->city,
         ]);
+
+        if ($request->has('image')) {
+            $place->media()->first()?->delete();
+            $place->addMediaFromRequest('image')->toMediaCollection();
+        }
 
         return redirect()->route('places.show', $id);
     }
