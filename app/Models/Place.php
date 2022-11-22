@@ -45,4 +45,17 @@ class Place extends Model implements HasMedia
             ->fit(Manipulations::FIT_CROP, 500, 500)
             ->nonQueued();
     }
+
+    // Policies ========================================================
+    public function canEdit(?int $user_id = null)
+    {
+        if (auth()->user()->is_admin) {
+            return true;
+        }
+        if ($user_id === null) {
+            $user_id = auth()->id();
+        }
+
+        return $this->author_id === $user_id;
+    }
 }

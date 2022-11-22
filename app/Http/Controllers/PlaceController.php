@@ -100,7 +100,7 @@ class PlaceController extends Controller
         $place = Place::findOrFail($id);
         $auth_user = auth()->user();
 
-        if (! $auth_user->isAdmin && $place->author_id != $auth_user->id) {
+        if (! $place->canEdit()) {
             abort(403);
         }
 

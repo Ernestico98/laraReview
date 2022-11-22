@@ -21,7 +21,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $auth_user = auth()->user();
 
-        if (! $auth_user->isAdmin && $user->id != $auth_user->id) {
+        if (! $user->canEditOrView()) {
             abort(403);
         }
 
@@ -33,7 +33,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $auth_user = auth()->user();
 
-        if (! $auth_user->isAdmin && $user->id != $auth_user->id) {
+        if (! $user->canEditOrView()) {
             abort(403);
         }
 

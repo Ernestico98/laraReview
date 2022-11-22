@@ -89,4 +89,17 @@ class User extends Authenticatable implements HasMedia
             ->fit(Manipulations::FIT_CROP, 500, 500)
             ->nonQueued();
     }
+
+    // Policies =======================================================
+    public function canEditOrView(?int $user_id = null)
+    {
+        if (auth()->user()->is_admin) {
+            return true;
+        }
+        if ($user_id === null) {
+            $user_id = auth()->id();
+        }
+
+        return $this->id === $user_id;
+    }
 }
