@@ -59,13 +59,14 @@
             </div>
         </div>
 
+        @auth
         <div style="position: relative; top: 22px;" class="text-end">
-
             @if (auth()->user()->isAdmin || auth()->user()->id == $place->author_id)
                 <a href="{{route('places.edit', $place->id)}}" class="inline-flex items-center px-3 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
                     Edit
                 </a>
             @endif
         </div>
+        @endauth
     </div>
 </div>

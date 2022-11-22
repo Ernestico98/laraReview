@@ -93,7 +93,7 @@ class User extends Authenticatable implements HasMedia
     // Policies =======================================================
     public function canEditOrView(?int $user_id = null)
     {
-        if (auth()->user()->is_admin) {
+        if (auth()->user()->isAdmin) {
             return true;
         }
         if ($user_id === null) {

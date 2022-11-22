@@ -49,7 +49,7 @@ class Place extends Model implements HasMedia
     // Policies ========================================================
     public function canEdit(?int $user_id = null)
     {
-        if (auth()->user()->is_admin) {
+        if (auth()->user()->isAdmin) {
             return true;
         }
         if ($user_id === null) {
