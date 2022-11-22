@@ -43,7 +43,6 @@ class UserFactory extends Factory
     {
         return $this->afterCreating(function (User $user) {
             $url = 'https://source.unsplash.com/random/1200x800';
-            // $url = https://via.placeholder.com/300/09f/fff.png;
             $user
                 ->addMediaFromUrl($url)
                 ->toMediaCollection();

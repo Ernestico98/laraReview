@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Place;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,5 +23,15 @@ class PlaceFactory extends Factory
             'author_id' => fake()->numberBetween(1, \App\Models\User::count()),
             'city' => fake()->city(),
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (Place $place) {
+            $url = 'https://source.unsplash.com/random/1200x800';
+            $place
+                ->addMediaFromUrl($url)
+                ->toMediaCollection();
+        });
     }
 }
