@@ -40,7 +40,7 @@ class Review extends Model
         });
 
         static::deleting(function ($review) {
-            $review->complaints->delete();
+            $review->complaints()->delete();
         });
     }
 }

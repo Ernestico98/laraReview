@@ -33,7 +33,7 @@ class Place extends Model implements HasMedia
     protected static function booted()
     {
         static::deleting(function ($place) {
-            $place->reviews->delete();
+            $place->reviews()->delete();
             $place->tags()->sync([]);
         });
     }

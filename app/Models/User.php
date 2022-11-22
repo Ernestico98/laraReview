@@ -68,9 +68,9 @@ class User extends Authenticatable implements HasMedia
     protected static function booted()
     {
         static::deleting(function ($user) {
-            $user->reviews->delete();
-            $user->complaints->delete();
-            $user->places->delete();
+            $user->reviews()->delete();
+            $user->complaints()->delete();
+            $user->places()->delete();
         });
 
         static::created(function ($user) {
