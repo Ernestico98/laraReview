@@ -32,7 +32,7 @@ class Navigation extends Component
             $this->menu[$key]['active'] = ($item['title'] != 'Home') ? Str::contains($Uri, $item['url']) : request()->getRequestUri() == '/';
         }
 
-        if ($Uri == '/users/' || $Uri == '/complaints') {
+        if ($Uri == '/users' || $Uri == '/complaints') {
             $this->menu[3]['active'] = true;
         }
 
