@@ -7,7 +7,7 @@
         <div class="mx-[20%] flex flex-row my-6 rounded-xl bg-gray-100 p-2 shadow-md place-items-end">
             <div class="basis-[68%] flex flex-row place-items-center">
                 <div class="basis-[30%]">
-                    <img src="@if($user->media()->exists()) {{$user->media->first()?->getUrl('avatar')}} @else {{asset('img/profile.jpeg')}} @endif" class="rounded-full h-28">
+                    <img src="@if($user->media->first()) {{$user->media->first()?->getUrl('avatar')}} @else {{asset('img/profile.jpeg')}} @endif" class="rounded-full h-28">
                 </div>
                 <div class="basis-[70%]">
                     <div> {{$user->name}} </div>

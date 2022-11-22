@@ -15,8 +15,9 @@ class TagController extends Controller
 
     public function show($id)
     {
-        $tag = Tag::with('places', 'places.tags', 'places.author')->findOrFail($id);
+        $tag = Tag::findOrFail($id);
         $places = $tag->places()->paginate(5);
+        $places->load('media', 'tags', 'author');
 
         return view('tags.show', compact('tag', 'places'));
     }

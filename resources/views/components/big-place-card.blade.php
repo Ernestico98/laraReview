@@ -1,6 +1,6 @@
 <div class="mb-12 mt-6 bg-gray-50 rounded-lg flex flex-row shadow-lg shadow-gray-200 h-max">
     <div class="basis-[33%] rounded-lg overflow-hidden bg-red-300">
-        <img class="hover:scale-110" src="@if($place->media()->exists()) {{$place->media->first()?->getUrl('place')}} @else https://www.idsplus.net/wp-content/uploads/default-placeholder.png @endif">
+        <img class="hover:scale-110" src="@if($place->media->first()) {{$place->media->first()?->getUrl('place')}} @else https://www.idsplus.net/wp-content/uploads/default-placeholder.png @endif">
     </div>
 
     <div class="basis-[66%] rounded-lg my-5 mx-8 bg-white px-6 pt-5 pb-4 shadow-md overflow-hidden">
