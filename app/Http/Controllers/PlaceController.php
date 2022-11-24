@@ -65,7 +65,7 @@ class PlaceController extends Controller
             $tag_object = Tag::firstOrCreate([
                 'name' => $tag,
             ]);
-            PlaceTag::create([
+            PlaceTag::firstOrcreate([
                 'place_id' => $place->id,
                 'tag_id' => $tag_object->id,
             ]);
