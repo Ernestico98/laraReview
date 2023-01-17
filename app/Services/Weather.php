@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Exception;
 use Illuminate\Support\Facades\Http;
 
 class Weather
@@ -11,7 +12,7 @@ class Weather
 
     public function __construct() {
         $this->auth = [
-           "appid" => env("WEATHER_API_KEY"),
+           "appid" => config('weather.appid'),
         ];
         $this->geo_base_url = $this->api_base_url . "geo/1.0/direct";
         $this->weather_base_url = $this->api_base_url . "data/2.5/weather";
@@ -20,13 +21,13 @@ class Weather
     private function apiRequest(string $endpoint, array $data = []) {
         $data = array_merge($data, $this->auth);
         $response = Http::get($endpoint, $data);
-        return json_decode($response->body());
+        return collect(json_decode($response->body()));
     }
 
-    public function findLocations(string $place_name) {
+    public function findLocations(string $place_name, int $limit = 50) {
         $data = [
             "q" => $place_name,
-            "limit" => 50,
+            "limit" => $limit,
         ];
         return $this->apiRequest($this->geo_base_url, $data);
     }
@@ -37,7 +38,12 @@ class Weather
             "lat" => $lat,
             "units" => "metric",
         ];
-        return $this->apiRequest($this->weather_base_url, $data);
+        $response = $this->apiRequest($this->weather_base_url, $data);
+
+        if ($response['cod'] != "200")
+            throw new Exception($response["message"]);
+
+        return $response;
     }
 
 }
