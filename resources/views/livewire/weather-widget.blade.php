@@ -1,8 +1,8 @@
-<div class="h-72 bg-blue-50 absolute top-12 left-12 w-64 rounded-md shadow-md shadow-gray-500 p-3">
+<div class="h-72 bg-blue-400 absolute top-12 left-12 w-64 rounded-md shadow-md shadow-gray-500 p-3">
     @push('header') @livewireStyles @endpush
     @push('footer') @livewireScripts @endpush
 
-    <input  type="text" placeholder="Find a Location" wire:model="city" class="px-1 mx-auto w-40"> 
+    <input  type="text" placeholder="Find a Location" wire:model="city" class="px-1 mx-auto w-40 rounded"> 
     <button class="bg-slate-300 rounded-md px-1 ml-1" wire:click="search"> Search </button>
 
     <ul class="block w-56 mx-auto bg-gray-50 max-h-36 overflow-y-auto absolute" wire:model="placeList">
