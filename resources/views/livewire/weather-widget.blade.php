@@ -26,7 +26,7 @@
             
             <img src="//openweathermap.org/img/wn/{{$weather["icon"]}}@2x.png" class="mx-auto h-16">
 
-            <p class="text-center"> Description: {{$weather["description"]}} </p>
+            <p class="text-center"> {{$weather["description"]}} </p>
             
             <p class="text-center"> Temperature </p>
             <div class="flex flex-row justify-around">
