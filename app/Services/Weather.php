@@ -24,7 +24,7 @@ class Weather
         return collect(json_decode($response->body()));
     }
 
-    public function findLocations(string $place_name, int $limit = 50) {
+    public function findLocations(string $place_name, int $limit = 15) {
         $data = [
             "q" => $place_name,
             "limit" => $limit,
