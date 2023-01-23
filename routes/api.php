@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // Api version 1 routes
-Route::middleware(['auth:sanctum', 'ApiIsAdmin'])->prefix('v1')->group( function() {
+Route::middleware(['auth:sanctum', 'ApiIsAdmin'])->prefix('v1')->name('api.v1.')->group( function() {
 
     Route::apiResource('places', \App\Http\Controllers\Api\PlaceController::class);
 });
