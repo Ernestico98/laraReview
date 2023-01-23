@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,4 +49,16 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     // Complaints
     Route::get('/complaints', [\App\Http\Controllers\ComplaintController::class, 'index'])->name('complaints.index');
     Route::post('/complaints/hide/{review_id}', [\App\Http\Controllers\ComplaintController::class, 'hide_review'])->name('complaints.hide');
+
+    // User token creation
+    Route::get('/access_token', function(){
+        $user = User::find(auth()->user()->id);  
+
+        return response()->json(
+            [
+                "your token" => $user->createToken("access")->plainTextToken,
+                "message" => "make sure you save your token in a safe place, it won't be shown again."
+            ]
+        );
+    });
 });
