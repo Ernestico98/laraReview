@@ -18,7 +18,6 @@
     </ul>
 
     <div class=" mt-2 p-2" wire:model="weather">
-        @ray($weather)
         @if (isset($weather))
             <p class="text-center text-xl"> {{$weather["name"]}} </p>
 
