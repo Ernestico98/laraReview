@@ -10,7 +10,7 @@
             @foreach ($placeList as $index => $cur_place)
                 <li"> 
                     <button class="p-1 hover:bg-blue-200 min-w-full text-left" wire:click="selectPlace({{$index}})">
-                        {{$cur_place->name}}, {{$cur_place->country}}
+                        {{$cur_place["name"]}}, {{$cur_place["country"]}}
                     </button>
                 </li>
             @endforeach

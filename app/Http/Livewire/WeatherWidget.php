@@ -36,7 +36,7 @@ class WeatherWidget extends Component
     }
 
     public function search() {
-        $this->placeList = Weather::findLocations($this->city);
+        $this->placeList = Weather::findLocations($this->city)->map(fn($item) => collect($item)->toArray())->toArray();
     }
 
     public function selectPlace($place_index) {
