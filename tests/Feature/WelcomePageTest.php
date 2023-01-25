@@ -26,13 +26,17 @@ class WelcomePageTest extends TestCase
 
     public function test_welcome_page()
     {
-        $response = $this->get('/');       
+        $this->guest_response->assertStatus(200);
+        $this->guest_response->assertSee("Welcome to LaraRe");
+        $this->guest_response->assertSee('<a class="text-whitehite" href="http://localhost">LaraRe</a>', false); 
 
-        $response->assertStatus(200);
+        $this->admin_response->assertStatus(200);
+        $this->admin_response->assertSee("Welcome to LaraRe");
+        $this->admin_response->assertSee('<a class="text-whitehite" href="http://localhost">LaraRe</a>', false); 
 
-        $response->assertSee("Welcome to LaraRe");
-
-        $response->assertSee('<a class="text-whitehite" href="http://localhost">LaraRe</a>', false); 
+        $this->user_response->assertStatus(200);
+        $this->user_response->assertSee("Welcome to LaraRe");
+        $this->user_response->assertSee('<a class="text-whitehite" href="http://localhost">LaraRe</a>', false); 
     }
 
     public function test_guest_see_register_now() {
