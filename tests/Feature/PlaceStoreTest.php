@@ -13,16 +13,12 @@ use Tests\TestCase;
 class PlaceStoreTest extends PlaceTest
 {
     use RefreshDatabase;
-
-    public $file;
-
-    public $response;
+    public $file, $response;
 
     public function setUp(): void {
         parent::setUp();
 
         Storage::fake('public');
-
         $this->file = UploadedFile::fake()->image('image.jpg');
 
         $this->response = $this->actingAs($this->user)->post(route('places.store'), [
@@ -32,13 +28,9 @@ class PlaceStoreTest extends PlaceTest
             'tags' => 'tag,tog,tug',
             'image' => $this->file,
         ]);
-
     }
 
-    public function test_store_status_and_redirect()
-    {
-        ray($this->response);
-
+    public function test_store_status_and_redirect() {
         $this->response->assertStatus(302);
         $this->response->assertRedirect(route('places.index'));
     }
@@ -81,10 +73,7 @@ class PlaceStoreTest extends PlaceTest
         ]);
     }
 
-    public function test_image_was_stored() {
-        
-        
-        
+    public function test_image_was_stored() {        
         $fileList = Storage::disk('public')->allFiles();
         $fileName = '1/image.jpg';
         
